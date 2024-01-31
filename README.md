@@ -34,9 +34,8 @@ This project is a CRUD (Create, Read, Update, Delete) application for managing c
 ### Model
 1. **Customer:**
 2. **Admin:**
-3. **JwtRequest:**
-4. **JwtResponse:**
- ->This Patient Token is only for when a patient book an appointment so they will get token in their register email.
+3. **JwtRequest:** Represents a request object containing user credentials (e.g., username and password) sent to a server for the generation of a JSON Web Token (JWT).
+4. **JwtResponse:** Represents a server response object containing a generated JWT and possibly other user-related information, returned to the client after a successful authentication request.
 
 ### Key Features
 
@@ -57,6 +56,34 @@ The application supports the deletion of customer records, ensuring the removal 
 
 6. **Authentication with JWT Security**
 To enhance security, the application implements JSON Web Token (JWT) authentication. Users must authenticate themselves using valid credentials, and subsequent requests to secured endpoints require the inclusion of a valid JWT token in the Authorization header.
+
+    ```
+### Controller
+In the "controller" package, there are two key classes: AuthController and CustomerController.
+1. **AuthController:**
+   
+   - The AuthController is dedicated to user authentication. Upon successful login, this controller generates a JSON Web Token (JWT) to facilitate secure access to other APIs. This token, acting as a key, is 
+     subsequently used for authentication and authorization in subsequent requests, ensuring a secure and streamlined user experience.
+
+2. **CustomController:**
+   - The CustomerController is responsible for handling CRUD (Create, Read, Update, Delete) operations related to customer entities. It manages the core functionalities for customer-related data, allowing the 
+     application to perform essential operations seamlessly.
+
+     These controllers collectively contribute to a robust and organized structure, with AuthController addressing user authentication and token issuance, while CustomerController manages operations specific to 
+     customer-related data, promoting modularity and clarity in the overall design of the application.
+
+   ```  
+### Security
+The security layer package consist of three class
+1. **JwtAuthenticationEntryPoint:**
+   Serves as an entry point for handling unauthorized access attempts, providing a custom response when users without valid authentication credentials try to access protected resources.
+2. **JwtAuthenticationFilter:**
+   Acts as a filter in the authentication process, intercepting incoming requests to validate and extract JWTs. It plays a crucial role in authenticating users based on the provided tokens and setting up the 
+   security context.
+3. **JwtHelper:**
+   A utility class likely designed to assist with common tasks related to JSON Web Tokens, such as token generation, parsing, and validation. It simplifies the handling of JWTs within the application's 
+   authentication and authorization processes.
+   
    ```
 ### Services
 The Services layer implements the core business logic, data processing, and interaction with the data repository. Key responsibilities include:
