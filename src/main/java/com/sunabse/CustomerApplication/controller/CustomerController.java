@@ -32,6 +32,10 @@ public class CustomerController {
        return customerService.deleteCustomer(id);
     }
 
+    @GetMapping("/all-customers")
+    public List<Customer> getCustomers(@RequestParam(value = "pageNumber",defaultValue = "0",required = false) int pageNumber,@RequestParam(value = "pageSize",defaultValue = "5",required = false) int pageSize) {
+        return customerService.getCustomers(pageNumber, pageSize);
+    }
     @PutMapping("/Customer/{id}/{address}")
     public String updateCustomer(@PathVariable Long id,@PathVariable String address){
         return customerService.updateCustomer(id,address);

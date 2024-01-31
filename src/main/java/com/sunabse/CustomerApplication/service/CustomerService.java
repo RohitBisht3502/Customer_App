@@ -35,4 +35,12 @@ public class CustomerService {
         customer.setAddress(address);
         return "customer updated";
     }
+
+    public List<Customer> getCustomers(int pageNumber,int pageSize) {
+
+        Pageable pageable= PageRequest.of(pageNumber,pageSize);
+        Page<Customer> customerPage=customerRepo.findAll(pageable);
+        List<Customer> content=customerPage.getContent();
+        return content;
+    }
 }
